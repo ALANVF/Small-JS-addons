@@ -1,16 +1,18 @@
-//var code = "-/1/:var -/2/:draw -/3/:= -/1/:function-/0/:(-/5/:value-/0/:) {\n    -/1/:return -/0/:value -/3/:+ -/4/:5-/0/:;<br>};";
-var code = document.getElementById("txt");
+/**
+ * styleList.js is a function that lets you change the properties of any part of a string or DOM element.
+**/
+
+/**
+ * @method styleList
+ * @param {String} [selectedString] The string to edit
+ * @param {Object[n]} [groupProperties] Starting at 0, the properties for each group
+ * @param {Object} [globalProperties] Properties to apply to all groups. Optional
+**/
 
 function styleList(s, l, g) {
-	console.log(s, "\n");
 	var nl = (s.search("\n") !== -1) ? "\n" : "\\n";
-	for(var k in s.split(nl)) {
-		s = s.replace(nl, "<br>");
-	}
-	for(k in s.split(" ")) {
-		s = s.replace(" ", "&nbsp;");
-	}
-	
+	for(var k in s.split(nl)) {s = s.replace(nl, "<br>");}
+	for(k in s.split(" ")) {s = s.replace(" ", "&nbsp;");}
 	var stringList = s.split("-/");
 	var elements = [];
 	var elementsList = [];
@@ -28,13 +30,9 @@ function styleList(s, l, g) {
 		el.style.color = g.color || "black";
 		el.style.backgroundColor = g.fill || "white";
 		el.style.border = ("solid " + g.stroke) || "transparent";
-		if(g.style == "bold") {
-			el.style.fontWeight = "bold";
-		}else if(g.style == "italic") {
-			el.style.fontStyle = "italic";
-		}else{
-			el.style.textDecoration = g.style || "none";
-		}
+		if(g.style == "bold") {el.style.fontWeight = "bold";}
+		else if(g.style == "italic") {el.style.fontStyle = "italic";}
+		else{el.style.textDecoration = g.style || "none";}
 		el.style.fontFamily = g.font || undefined;
 		el.style.fontSize = (g.fsize + "px") || undefined;
 		el.style.position = g.postype || "relative";
@@ -48,13 +46,9 @@ function styleList(s, l, g) {
 			v.style.color = l[elementsList[i].group].color || el.style.color;
 			v.style.backgroundColor = l[elementsList[i].group].fill || el.style.backgroundColor;
 			v.style.border = ("solid " + l[elementsList[i].group].stroke) || el.style.border;
-			if(l[elementsList[i].group].style == "bold") {
-				v.style.fontWeight = "bold";
-			}else if(l[elementsList[i].group].style == "italic") {
-				v.style.fontStyle = "italic";
-			}else{
-				v.style.textDecoration = l[elementsList[i].group].style || el.style.textDecoration;
-			}
+			if(l[elementsList[i].group].style == "bold") {v.style.fontWeight = "bold";}
+			else if(l[elementsList[i].group].style == "italic") {v.style.fontStyle = "italic";}
+			else{v.style.textDecoration = l[elementsList[i].group].style || el.style.textDecoration;}
 			v.style.fontFamily = l[elementsList[i].group].font || el.style.fontFamily;
 			v.style.fontSize = (l[elementsList[i].group].fsize + "px") || el.style.fontSize;
 			v.style.position = l[elementsList[i].group].postype || el.style.position;
@@ -64,22 +58,4 @@ function styleList(s, l, g) {
 			v.style.height = (l[elementsList[i].group].h + "px") || (l[elementsList[i].group].size[1] + "px") || (el.style.height + "px");
 		}
 	}
-	/*console.log("Original text:\n", stringList);
-	console.log("\nElements object list:\n", elementsList);
-	console.log("\nElements array list:\n", elements);
-	console.log("\nElements group properties:\n", l);
-	console.log("\n", s.replace(" ", "&nbsp;"));*/
-	console.log(s);
 }
-
-styleList(code.textContent, [
-		{},
-		{color: "rgb(50, 50, 255)"},
-		{color: "rgb(255, 75, 0)"},
-		{color: "rgb(0, 0, 175)"},
-		{color: "rgb(100, 150, 255)"},
-		{color: "grey"}
-	], {
-		font: "Monaco, consolas"
-	}
-);
