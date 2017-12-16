@@ -20,18 +20,18 @@ var code1 = document.getElementById("text");
 var code2 = "    -/1/-rect-/0/-(-/2/-100-/0/-, -/2/-100-/0/-, -/2/-50-/0/-, -/2/-50-/0/-);\n};";
 
 styleList(code1, [
-        {}, //if left blank, it will default to black text
-		{color: "rgb(0, 0, 0)", style: "bold"},
-		{color: "rgb(50, 0, 255)", stroke: "1px red"},
-		{color: "grey", fill: "rgb(255, 255, 150)"}
+	{}, //if left blank, it will default to black text
+	{color: "rgb(0, 0, 0)", style: "bold"},
+	{color: "rgb(50, 0, 255)", stroke: "1px red"},
+	{color: "grey", fill: "rgb(255, 255, 150)"}
 	], //group properties
 	{font: "Monaco, consolas"} //global properties
 );
 
 styleList(code2, [
-        {},
-		{color: "rgb(0, 0, 255)", style: "italic"},
-		{color: "rgb(255, 75, 0)", style: "underline"}
+	{},
+	{color: "rgb(0, 0, 255)", style: "italic"},
+	{color: "rgb(255, 75, 0)", style: "underline"}
 	],
 	{font: "Monaco, consolas", fsize: 30}
 );
