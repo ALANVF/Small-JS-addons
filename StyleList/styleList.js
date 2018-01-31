@@ -7,9 +7,10 @@
  * @param {String} [selectedString] The string to edit
  * @param {Object[n]} [groupProperties] Starting at 0, the properties for each group
  * @param {Object} [globalProperties] Properties to apply to all groups. Optional
+ * @param {String} [elementToAddTo] The id of an element to add the styled text to. Optional
 **/
 
-function styleList(s, l, g) {
+function styleList(s, l, g, e) {
 	var nl = (s.search("\n") !== -1) ? "\n" : "\\n";
 	for(var k in s.split(nl)) {s = s.replace(nl, "<br>");}
 	for(k in s.split(" ")) {s = s.replace(" ", "&nbsp;");}
@@ -40,7 +41,11 @@ function styleList(s, l, g) {
 		el.style.top = (g.y + "px") || (g.pos[1] + "px") || undefined;
 		el.style.width = (g.w + "px") || (g.size[0] + "px") || undefined;
 		el.style.height = (g.h + "px") || (g.size[1] + "px") || undefined;
-		document.body.appendChild(el);
+		if(e === undefined) {
+			document.body.appendChild(el);
+		}else{
+			document.getElementById(e).appendChild(el);
+		}
 		for(var k = 0; k < cg.length; k++) {
 			var v = cg[k];
 			v.style.color = l[elementsList[i].group].color || el.style.color;
